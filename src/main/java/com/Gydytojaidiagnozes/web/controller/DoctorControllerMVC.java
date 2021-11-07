@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
-public class DoctorController {
+public class DoctorControllerMVC {
 
     @Autowired
     private DoctorService doctorService;
@@ -53,7 +53,7 @@ public class DoctorController {
         return "add-doctor";
     }
 
-    @PostMapping("/update-vartotojas/{id}")
+    @PostMapping("/update-doctor/{id}")
     public String update(ModelMap model, @ModelAttribute("doctor") Doctor doctor, @PathVariable int id,
                          BindingResult result) {
         if(result.hasErrors()) {

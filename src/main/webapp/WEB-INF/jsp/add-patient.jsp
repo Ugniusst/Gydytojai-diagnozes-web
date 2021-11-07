@@ -2,8 +2,8 @@
 <%@ include file="common/navigation.jspf"%>
 
 <div class="container">
-    <p>Add new Doctor:</p>
-    <form:form method="post" modelAttribute="doctor">
+    <p>Add new patient:</p>
+    <form:form method="post" modelAttribute="patient">
 
 
         <form:label path="name">name</form:label>

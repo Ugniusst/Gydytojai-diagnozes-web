@@ -1,27 +1,27 @@
 package com.Gydytojaidiagnozes.web.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Patient {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String telephoneNumber;
-    private int registrationNumber;
-    private String address;
 
     public Patient() {
 
     }
-    public Patient(int id, String name, String telephoneNumber, int registrationNumber, String address) {
+
+    public Patient(int id, String name, String telephoneNumber) {
         this.id = id;
         this.name = name;
         this.telephoneNumber = telephoneNumber;
-        this.registrationNumber = registrationNumber;
-        this.address = address;
     }
 
     public int getId() {
@@ -48,19 +48,4 @@ public class Patient {
         this.telephoneNumber = telephoneNumber;
     }
 
-    public int getRegistrationNumber() {
-        return registrationNumber;
-    }
-
-    public void setRegistrationNumber(int registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }

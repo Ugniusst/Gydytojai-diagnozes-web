@@ -4,6 +4,7 @@ import com.Gydytojaidiagnozes.web.model.Diagnose;
 import com.Gydytojaidiagnozes.web.model.Doctor;
 import com.Gydytojaidiagnozes.web.model.Patient;
 import com.Gydytojaidiagnozes.web.repository.DiagnoseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,41 +12,53 @@ import java.util.Date;
 @Service
 public class DiagnoseService {
 
-    private final DiagnoseRepository diagnoseRepository;
+    @Autowired
+    DiagnoseRepository diagnoseRepository;
 
-    public DiagnoseService(DiagnoseRepository diagnoseRepository) {
-        this.diagnoseRepository = diagnoseRepository;
-    }
-    Diagnose findDiagnoseById(int id) {
+    public Diagnose findDiagnoseById(int id) {
         return diagnoseRepository.findById(id);
     }
 
-    Iterable<Diagnose> findAllDiagnoses() {
+    public Iterable<Diagnose> findAllDiagnoses() {
         return  diagnoseRepository.findAll();
     }
 
-    Diagnose findDiagnoseByPatientId(Patient patientId) {
+    public Iterable<Diagnose> findDiagnoseByPatientId(Patient patientId) {
         return diagnoseRepository.findByPatientId(patientId);
     }
 
-    Diagnose findDiagnoseByDoctorId(Doctor doctorId) {
+    public Iterable<Diagnose> findDiagnoseByDoctorId(Doctor doctorId) {
         return diagnoseRepository.findByDoctorId(doctorId);
 
     }
 
-    Diagnose findDiagnoseByDate(Date date) {
+    public Iterable<Diagnose> findDiagnoseByDate(String date) {
         return diagnoseRepository.findByDate(date);
     }
 
-    Diagnose saveDiagnose(Diagnose Diagnose) {
+    public Diagnose saveDiagnose(Diagnose Diagnose) {
         return diagnoseRepository.save(Diagnose);
     }
 
-    void deleteDiagnoseById(int id) {
+    public void updateDiagnose(Diagnose diagnose) {
+        Diagnose updatable = diagnoseRepository.findById(diagnose.getId());
+        if(updatable != null) {
+            updatable.setDiagnoseText(diagnose.getDiagnoseText());
+            updatable.setDate(diagnose.getDate());
+            updatable.setDoctorId(diagnose.getDoctorId());
+            updatable.setPatientId(diagnose.getPatientId());
+            diagnoseRepository.save(updatable);
+        }
+        else {
+            diagnoseRepository.save(diagnose);
+        }
+    }
+
+    public void deleteDiagnoseById(int id) {
         diagnoseRepository.deleteById(id);
     }
 
-    void deleteDiagnose(Diagnose Diagnose) {
+    public void deleteDiagnose(Diagnose Diagnose) {
         diagnoseRepository.delete(Diagnose);
     }
 }

@@ -46,4 +46,13 @@ public class Doctor {
     public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Doctor doctor = (Doctor) o;
+        return (getId() == doctor.getId() && getName().equals(doctor.getName())) ;
+    }
 }

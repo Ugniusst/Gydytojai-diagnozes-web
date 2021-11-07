@@ -1,28 +1,32 @@
 package com.Gydytojaidiagnozes.web.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Diagnose {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int doctorId;
-    private int patientId;
-    private String diagnose;
-    private Date date;
+    @ManyToOne()
+    @JoinColumn(name = "doctorId")
+    private Doctor doctorId;
+    @ManyToOne()
+    @JoinColumn(name = "patientId")
+    private Patient patientId;
+    private String diagnoseText;
+    private String date;
 
     public Diagnose() {
 
     }
 
-    public Diagnose(int id, int doctor, int patient, String diagnose, Date date) {
+    public Diagnose(int id, Doctor doctor, Patient patient, String diagnoseText, String date) {
         this.id = id;
         this.doctorId = doctor;
         this.patientId = patient;
-        this.diagnose = diagnose;
+        this.diagnoseText = diagnoseText;
         this.date = date;
     }
 
@@ -34,35 +38,44 @@ public class Diagnose {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public int getDoctorId() {
+    public Doctor getDoctorId() {
         return doctorId;
     }
 
-    public void setDoctorId(int doctorId) {
+    public void setDoctorId(Doctor doctorId) {
         this.doctorId = doctorId;
     }
 
-    public int getPatientId() {
+    public Patient getPatientId() {
         return patientId;
     }
 
-    public void setPatientId(int patientId) {
+    public void setPatientId(Patient patientId) {
         this.patientId = patientId;
     }
 
-    public String getDiagnose() {
-        return diagnose;
+    public String getDiagnoseText() {
+        return diagnoseText;
     }
 
-    public void setDiagnose(String diagnose) {
-        this.diagnose = diagnose;
+    public void setDiagnoseText(String diagnoseText) {
+        this.diagnoseText = diagnoseText;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Diagnose diagnose = (Diagnose) o;
+        return (getId() == diagnose.getId() && getDiagnoseText().equals(diagnose.getDiagnoseText())) ;
     }
 }

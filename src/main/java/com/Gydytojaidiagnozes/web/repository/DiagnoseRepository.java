@@ -12,11 +12,11 @@ public interface DiagnoseRepository extends CrudRepository<Diagnose, Integer> {
 
     Iterable<Diagnose> findAll();
 
-    Diagnose findByPatientId(Patient patientId);
+    Iterable<Diagnose> findByPatientId(Patient patientId);
 
-    Diagnose findByDoctorId(Doctor doctorId);
+    Iterable<Diagnose> findByDoctorId(Doctor doctorId);
 
-    Diagnose findByDate(Date date);
+    Iterable<Diagnose> findByDate(String date);
 
     Diagnose save(Diagnose Diagnose);
 
@@ -24,5 +24,5 @@ public interface DiagnoseRepository extends CrudRepository<Diagnose, Integer> {
 
     void delete(Diagnose Diagnose);
 
-    void deleteAllByDoctorId(int id);
+    void deleteAllByDoctorId(Doctor doctorId);
 }

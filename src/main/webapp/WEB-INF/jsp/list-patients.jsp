@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>View doctors</title>
+    <title>View patients</title>
     <link href="/css/common.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -20,20 +20,20 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${doctors}" var="doctor">
+    <c:forEach items="${patients}" var="patient">
         <tr>
-            <td>${doctor.id}</td>
-            <td>${doctor.name}</td>
-            <td>${doctor.telephoneNumber}</td>
-            <td><a type="button" href="/update-doctor/${doctor.id}">UPDATE</a></td>
-            <td><a type="button" href="/delete-doctor/${doctor.id}">DELETE</a></td>
+            <td>${patient.id}</td>
+            <td>${patient.name}</td>
+            <td>${patient.telephoneNumber}</td>
+            <td><a type="button" href="/update-patient/${patient.id}">UPDATE</a></td>
+            <td><a type="button" href="/delete-patient/${patient.id}">DELETE</a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 
 <div>
-    <a href="add-doctor">ADD doctor</a>
+    <a href="add-patient">ADD patient</a>
 </div>
 </body>
 </html>

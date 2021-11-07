@@ -1,5 +1,6 @@
 package com.Gydytojaidiagnozes.web.service;
 
+import com.Gydytojaidiagnozes.web.model.Diagnose;
 import com.Gydytojaidiagnozes.web.model.Patient;
 import com.Gydytojaidiagnozes.web.repository.PatientRepository;
 import org.springframework.stereotype.Service;
@@ -12,31 +13,36 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    Patient findPatientById(int id) {
+    public Patient findPatientById(int id) {
         return patientRepository.findById(id);
     }
 
-    Iterable<Patient> findAllPatients() {
+    public Iterable<Patient> findAllPatients() {
         return patientRepository.findAll();
     }
 
-    Patient findPatientByTelephoneNumber(String telephoneNumber) {
+    public Patient findPatientByTelephoneNumber(String telephoneNumber) {
         return patientRepository.findByTelephoneNumber(telephoneNumber);
     }
 
-    Patient findPatientByName(String name) {
+    public Patient findPatientByName(String name) {
         return patientRepository.findByName(name);
     }
 
-    Patient savePatient(Patient patient) {
+    public Patient savePatient(Patient patient) {
         return patientRepository.save(patient);
     }
 
-    void deletePatientById(int id) {
+    public void updatePatient(Patient patient) {
+        patientRepository.save(patient);
+
+    }
+
+    public void deletePatientById(int id) {
         patientRepository.deleteById(id);
     }
 
-    void deletePatient(Patient patient) {
+    public void deletePatient(Patient patient) {
         patientRepository.delete(patient);
     }
 }
